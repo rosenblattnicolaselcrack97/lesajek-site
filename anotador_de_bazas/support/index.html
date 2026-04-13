@@ -3,580 +3,161 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- SEO / TITLE -->
   <title>Anotador de Bazas – Soporte</title>
-  <meta name="description" content="Página de soporte de Anotador de Bazas con contacto, política de privacidad, términos y explicación de cómo se juegan los juegos de bazas." />
+  <meta name="description" content="Soporte oficial de Anotador de Bazas. Contacto, ayuda y explicación de cómo jugar juegos de bazas.">
+
+  <!-- ICONOS -->
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon.png">
+  <link rel="icon" type="image/png" sizes="512x512" href="/assets/icon.png">
+  <link rel="apple-touch-icon" href="/assets/adaptative-icon.png">
+
+  <!-- SOCIAL -->
+  <meta property="og:title" content="Anotador de Bazas – Soporte">
+  <meta property="og:description" content="Soporte oficial de Anotador de Bazas.">
+  <meta property="og:image" content="https://lesajek.com/assets/icon.png">
+  <meta property="og:url" content="https://lesajek.com/anotador_de_bazas/support/">
+  <meta property="og:type" content="website">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://lesajek.com/assets/icon.png">
+
   <style>
-    :root {
-      --bg: #0b1220;
-      --bg-2: #10192b;
-      --card: #15213a;
-      --card-2: #1a2948;
-      --text: #edf3ff;
-      --muted: #b3c0db;
-      --line: #2d3d63;
-      --accent: #8db4ff;
-      --accent-strong: #6a9cff;
-      --radius: 18px;
-      --shadow: 0 18px 50px rgba(0, 0, 0, 0.25);
-      --max-width: 980px;
-    }
-
-    * {
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
     body {
       margin: 0;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      color: var(--text);
-      background:
-        radial-gradient(circle at top left, rgba(141, 180, 255, 0.16), transparent 28%),
-        radial-gradient(circle at top right, rgba(106, 156, 255, 0.1), transparent 30%),
-        linear-gradient(180deg, var(--bg) 0%, var(--bg-2) 100%);
-      line-height: 1.65;
-    }
-
-    a {
-      color: var(--accent);
-      text-decoration: none;
-    }
-
-    a:hover {
-      text-decoration: underline;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto;
+      background: #0b1220;
+      color: #fff;
     }
 
     .container {
-      width: min(100% - 32px, var(--max-width));
-      margin: 0 auto;
-      padding: 32px 0 48px;
+      max-width: 900px;
+      margin: auto;
+      padding: 24px;
     }
 
-    .hero {
-      border: 1px solid var(--line);
-      background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));
-      border-radius: 28px;
-      box-shadow: var(--shadow);
-      padding: 28px;
-      margin-bottom: 22px;
-    }
-
-    .topbar {
+    .logo {
       display: flex;
-      align-items: flex-start;
-      justify-content: space-between;
+      align-items: center;
       gap: 16px;
-      flex-wrap: wrap;
+      margin-bottom: 20px;
     }
 
-    .eyebrow {
-      display: inline-block;
-      font-size: 12px;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      color: var(--accent);
-      margin-bottom: 10px;
+    .logo img {
+      width: 64px;
+      height: 64px;
+      border-radius: 16px;
     }
 
     h1 {
       margin: 0;
-      font-size: clamp(30px, 5vw, 46px);
-      line-height: 1.08;
-      letter-spacing: -0.03em;
-    }
-
-    .lead {
-      margin: 14px 0 0;
-      max-width: 760px;
-      color: var(--muted);
-      font-size: 18px;
-    }
-
-    .lang-switch {
-      display: inline-flex;
-      align-items: center;
-      background: rgba(255,255,255,0.03);
-      border: 1px solid var(--line);
-      padding: 4px;
-      border-radius: 999px;
-      gap: 4px;
-    }
-
-    .lang-switch button {
-      border: 0;
-      background: transparent;
-      color: var(--muted);
-      padding: 10px 14px;
-      border-radius: 999px;
-      cursor: pointer;
-      font-weight: 700;
-      transition: 0.2s ease;
-    }
-
-    .lang-switch button.active {
-      background: var(--accent-strong);
-      color: #08111f;
-    }
-
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 18px;
-      margin-bottom: 22px;
     }
 
     .card {
-      background: rgba(21, 33, 58, 0.95);
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      padding: 22px;
-    }
-
-    .card h2,
-    .faq-head h2 {
-      margin: 0 0 10px;
-      font-size: 24px;
-      letter-spacing: -0.02em;
-    }
-
-    .card p,
-    .faq-head p,
-    .answer p,
-    .answer li {
-      color: var(--muted);
-    }
-
-    .button-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin-top: 16px;
-    }
-
-    .button {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 44px;
-      padding: 10px 14px;
+      background: #16213a;
+      padding: 16px;
       border-radius: 12px;
-      border: 1px solid var(--line);
-      background: var(--card-2);
-      color: var(--text);
-      font-weight: 700;
-      transition: 0.2s ease;
-      text-decoration: none;
+      margin-bottom: 16px;
     }
 
-    .button:hover,
-    .button:focus-visible {
-      transform: translateY(-1px);
-      border-color: var(--accent);
-      outline: none;
-      text-decoration: none;
-    }
-
-    .button.primary {
-      background: var(--accent-strong);
-      color: #08111f;
-      border-color: transparent;
-    }
-
-    .faq-wrap {
-      background: rgba(21, 33, 58, 0.7);
-      border: 1px solid var(--line);
-      border-radius: 24px;
-      box-shadow: var(--shadow);
-      padding: 22px;
-    }
-
-    .faq-head {
-      margin-bottom: 18px;
-    }
+    a { color: #8db4ff; }
 
     details {
-      border: 1px solid var(--line);
-      border-radius: 16px;
-      background: rgba(255,255,255,0.02);
-      margin-bottom: 12px;
-      overflow: hidden;
+      background: #16213a;
+      border-radius: 10px;
+      margin-bottom: 10px;
+      padding: 10px;
     }
 
     summary {
-      list-style: none;
       cursor: pointer;
-      padding: 18px 20px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 14px;
-      font-size: 17px;
-      font-weight: 700;
+      font-weight: bold;
     }
 
-    summary::-webkit-details-marker {
-      display: none;
+    .lang {
+      margin-bottom: 20px;
     }
 
-    summary::after {
-      content: "+";
-      flex: 0 0 auto;
-      font-size: 24px;
-      line-height: 1;
-      color: var(--accent);
-    }
-
-    details[open] summary::after {
-      content: "−";
-    }
-
-    .answer {
-      padding: 0 20px 20px;
-    }
-
-    .answer ul {
-      margin: 0;
-      padding-left: 20px;
-    }
-
-    .footer {
-      text-align: center;
-      color: var(--muted);
-      font-size: 14px;
-      margin-top: 22px;
-    }
-
-    [data-i18n] {
-      display: none;
-    }
-
-    html[lang="es"] [data-i18n="es"],
-    html[lang="en"] [data-i18n="en"] {
-      display: block;
-    }
-
-    html[lang="es"] .inline-es,
-    html[lang="en"] .inline-en {
-      display: inline;
-    }
-
-    .inline-es,
-    .inline-en {
-      display: none;
-    }
-
-    @media (max-width: 760px) {
-      .grid {
-        grid-template-columns: 1fr;
-      }
-
-      .hero,
-      .faq-wrap,
-      .card {
-        padding: 20px;
-      }
-
-      .container {
-        width: min(100% - 20px, var(--max-width));
-        padding-top: 20px;
-      }
+    button {
+      margin-right: 10px;
+      padding: 8px 12px;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
     }
   </style>
 </head>
+
 <body>
-  <main class="container">
-    <section class="hero">
-      <div class="topbar">
-        <div>
-          <span class="eyebrow">Anotador de Bazas</span>
-          <h1>
-            <span class="inline-es">Soporte oficial</span>
-            <span class="inline-en">Official support</span>
-          </h1>
-        </div>
+  <div class="container">
 
-        <div class="lang-switch" role="group" aria-label="Language switcher">
-          <button id="lang-es" type="button" class="active" aria-pressed="true">ES</button>
-          <button id="lang-en" type="button" aria-pressed="false">EN</button>
-        </div>
-      </div>
-
-      <p class="lead" data-i18n="es">
-        Esta página reúne la información de contacto, los accesos legales y una explicación clara sobre cómo funcionan los juegos de bazas.
-      </p>
-      <p class="lead" data-i18n="en">
-        This page includes contact information, legal links, and a clear explanation of how trick-taking games work.
-      </p>
-    </section>
-
-    <section class="grid" aria-label="Support and legal information">
-      <article class="card">
-        <h2 data-i18n="es">Contacto de soporte</h2>
-        <h2 data-i18n="en">Support contact</h2>
-
-        <p data-i18n="es">
-          Para consultas generales, problemas con la app, errores, sugerencias o ayuda de uso, escribí a este correo.
-        </p>
-        <p data-i18n="en">
-          For general questions, app issues, bug reports, suggestions, or usage help, contact us at this email address.
-        </p>
-
-        <div class="button-row">
-          <a class="button primary" href="mailto:info@lesajek.com">info@lesajek.com</a>
-        </div>
-      </article>
-
-      <article class="card">
-        <h2 data-i18n="es">Políticas y condiciones</h2>
-        <h2 data-i18n="en">Policies and terms</h2>
-
-        <p data-i18n="es">
-          Desde acá podés acceder a la política de privacidad y a los términos y condiciones de la app.
-        </p>
-        <p data-i18n="en">
-          From here you can access the app privacy policy and terms and conditions.
-        </p>
-
-        <div class="button-row">
-          <a class="button" href="https://lesajek.com/anotador_de_bazas/policy/" target="_blank" rel="noopener noreferrer">
-            <span class="inline-es">Política de privacidad</span>
-            <span class="inline-en">Privacy Policy</span>
-          </a>
-          <a class="button" href="https://lesajek.com/anotador_de_bazas/terms/" target="_blank" rel="noopener noreferrer">
-            <span class="inline-es">Términos y condiciones</span>
-            <span class="inline-en">Terms &amp; Conditions</span>
-          </a>
-        </div>
-      </article>
-    </section>
-
-    <section class="faq-wrap" aria-labelledby="faq-title">
-      <div class="faq-head">
-        <h2 id="faq-title" data-i18n="es">Preguntas y respuestas: cómo se juega a las bazas</h2>
-        <h2 id="faq-title-en" data-i18n="en">Questions and answers: how trick-taking games are played</h2>
-
-        <p data-i18n="es">
-          Esta guía explica el funcionamiento general de los juegos de bazas. Las reglas exactas pueden cambiar según el juego concreto.
-        </p>
-        <p data-i18n="en">
-          This guide explains the general structure of trick-taking games. Exact rules may vary depending on the specific game.
-        </p>
-      </div>
-
-      <details>
-        <summary>
-          <span class="inline-es">¿Qué es una baza?</span>
-          <span class="inline-en">What is a trick?</span>
-        </summary>
-        <div class="answer">
-          <p data-i18n="es">
-            Una baza es una ronda corta dentro de una mano. Cada jugador juega una sola carta. Cuando todos jugaron, se determina cuál de esas cartas gana la ronda. Esa ronda ganada se llama baza.
-          </p>
-          <p data-i18n="en">
-            A trick is a short round inside a hand. Each player plays one card. After everyone has played, one of those cards wins the round. That won round is called a trick.
-          </p>
-        </div>
-      </details>
-
-      <details>
-        <summary>
-          <span class="inline-es">¿Cómo empieza una mano?</span>
-          <span class="inline-en">How does a hand begin?</span>
-        </summary>
-        <div class="answer">
-          <p data-i18n="es">
-            Primero se reparten cartas a todos los jugadores. Después, un jugador inicia la primera baza jugando una carta sobre la mesa. Esa carta marca el palo de salida de esa baza.
-          </p>
-          <p data-i18n="en">
-            First, cards are dealt to all players. Then one player starts the first trick by playing a card to the table. That card sets the lead suit for that trick.
-          </p>
-        </div>
-      </details>
-
-      <details>
-        <summary>
-          <span class="inline-es">¿Qué significa seguir el palo?</span>
-          <span class="inline-en">What does follow suit mean?</span>
-        </summary>
-        <div class="answer">
-          <p data-i18n="es">
-            Seguir el palo significa jugar una carta del mismo palo que jugó el primer jugador de la baza. En muchos juegos esto es obligatorio si tenés una carta de ese palo en la mano.
-          </p>
-          <p data-i18n="en">
-            Following suit means playing a card from the same suit as the first card played in the trick. In many games this is mandatory if you have a card of that suit in your hand.
-          </p>
-        </div>
-      </details>
-
-      <details>
-        <summary>
-          <span class="inline-es">¿Quién gana una baza?</span>
-          <span class="inline-en">Who wins a trick?</span>
-        </summary>
-        <div class="answer">
-          <p data-i18n="es">
-            En general, gana la carta más alta del palo de salida entre los jugadores que siguieron ese palo. Si el juego tiene triunfo, una carta del palo de triunfo puede superar a las cartas del palo de salida.
-          </p>
-          <p data-i18n="en">
-            In general, the highest card of the lead suit wins among the players who followed that suit. If the game has trump, a card from the trump suit can beat cards from the lead suit.
-          </p>
-        </div>
-      </details>
-
-      <details>
-        <summary>
-          <span class="inline-es">¿Qué es el triunfo?</span>
-          <span class="inline-en">What is trump?</span>
-        </summary>
-        <div class="answer">
-          <p data-i18n="es">
-            El triunfo es un palo especial definido por las reglas del juego o por la mano actual. Una carta de triunfo suele ganar una baza aunque el palo que abrió la baza haya sido otro.
-          </p>
-          <p data-i18n="en">
-            Trump is a special suit defined by the game rules or by the current hand. A trump card will often win the trick even if a different suit was led first.
-          </p>
-        </div>
-      </details>
-
-      <details>
-        <summary>
-          <span class="inline-es">¿Qué pasa si no tengo cartas del palo que salió?</span>
-          <span class="inline-en">What happens if I do not have a card in the lead suit?</span>
-        </summary>
-        <div class="answer">
-          <p data-i18n="es">
-            Depende del juego. A veces podés jugar cualquier carta. En otros casos puede haber obligación de jugar triunfo o de cumplir alguna regla adicional. Eso cambia según el reglamento específico.
-          </p>
-          <p data-i18n="en">
-            It depends on the game. Sometimes you may play any card. In other games you may be required to play trump or follow another additional rule. That depends on the specific rules.
-          </p>
-        </div>
-      </details>
-
-      <details>
-        <summary>
-          <span class="inline-es">¿Qué sucede después de ganar una baza?</span>
-          <span class="inline-en">What happens after winning a trick?</span>
-        </summary>
-        <div class="answer">
-          <p data-i18n="es">
-            El jugador que ganó la baza suele comenzar la siguiente, jugando la primera carta de la nueva ronda. Así se repite el proceso hasta que se terminan las cartas de la mano.
-          </p>
-          <p data-i18n="en">
-            The player who won the trick usually starts the next one by playing the first card of the new round. This continues until all cards in the hand have been played.
-          </p>
-        </div>
-      </details>
-
-      <details>
-        <summary>
-          <span class="inline-es">¿Cómo se cuentan los puntos?</span>
-          <span class="inline-en">How are points counted?</span>
-        </summary>
-        <div class="answer">
-          <p data-i18n="es">
-            Hay muchos sistemas. Algunos juegos cuentan cuántas bazas ganó cada jugador o equipo. Otros suman puntos por acertar una apuesta, por cartas especiales o por cumplir objetivos definidos por las reglas.
-          </p>
-          <p data-i18n="en">
-            There are many scoring systems. Some games count how many tricks each player or team won. Others award points for meeting a bid, capturing special cards, or reaching goals defined by the rules.
-          </p>
-        </div>
-      </details>
-
-      <details>
-        <summary>
-          <span class="inline-es">¿Todos los juegos de bazas son iguales?</span>
-          <span class="inline-en">Are all trick-taking games the same?</span>
-        </summary>
-        <div class="answer">
-          <p data-i18n="es">
-            No. Comparten una estructura parecida, pero cambian la forma de repartir, el orden de las cartas, la existencia o no de triunfo, la manera de puntuar y las reglas obligatorias de juego.
-          </p>
-          <p data-i18n="en">
-            No. They share a similar structure, but they differ in dealing rules, card ranking, whether trump exists, how scoring works, and which play obligations apply.
-          </p>
-        </div>
-      </details>
-
-      <details>
-        <summary>
-          <span class="inline-es">¿Para qué sirve esta app?</span>
-          <span class="inline-en">What is this app for?</span>
-        </summary>
-        <div class="answer">
-          <p data-i18n="es">
-            Esta app sirve para registrar y seguir el puntaje de partidas de bazas de forma rápida y clara. No reemplaza las reglas del juego que elijan los jugadores, sino que ayuda a anotar resultados y mantener el control de la partida.
-          </p>
-          <p data-i18n="en">
-            This app is used to record and track scores for trick-taking games quickly and clearly. It does not replace the rules chosen by the players. It helps record results and keep track of the match.
-          </p>
-        </div>
-      </details>
-    </section>
-
-    <div class="footer">
-      <span class="inline-es">© <span id="year-es"></span> Lesajek. Todos los derechos reservados.</span>
-      <span class="inline-en">© <span id="year-en"></span> Lesajek. All rights reserved.</span>
+    <!-- LOGO ARRIBA -->
+    <div class="logo">
+      <img src="/assets/icon.png" alt="logo">
+      <h1>Anotador de Bazas</h1>
     </div>
-  </main>
+
+    <!-- IDIOMA -->
+    <div class="lang">
+      <button onclick="setLang('es')">ES</button>
+      <button onclick="setLang('en')">EN</button>
+    </div>
+
+    <!-- CONTACTO -->
+    <div class="card" data-es>
+      <h2>Contacto</h2>
+      <p>Escribinos a <a href="mailto:info@lesajek.com">info@lesajek.com</a></p>
+    </div>
+
+    <div class="card" data-en style="display:none">
+      <h2>Contact</h2>
+      <p>Email us at <a href="mailto:info@lesajek.com">info@lesajek.com</a></p>
+    </div>
+
+    <!-- LINKS LEGALES -->
+    <div class="card" data-es>
+      <h2>Legal</h2>
+      <a href="https://lesajek.com/anotador_de_bazas/policy/">Política de privacidad</a><br>
+      <a href="https://lesajek.com/anotador_de_bazas/terms/">Términos y condiciones</a>
+    </div>
+
+    <div class="card" data-en style="display:none">
+      <h2>Legal</h2>
+      <a href="https://lesajek.com/anotador_de_bazas/policy/">Privacy Policy</a><br>
+      <a href="https://lesajek.com/anotador_de_bazas/terms/">Terms & Conditions</a>
+    </div>
+
+    <!-- FAQ -->
+    <div data-es>
+      <h2>Cómo se juega a las bazas</h2>
+
+      <details><summary>¿Qué es una baza?</summary><p>Una ronda donde cada jugador tira una carta.</p></details>
+      <details><summary>¿Quién gana?</summary><p>La carta más alta del palo o triunfo.</p></details>
+      <details><summary>¿Qué es triunfo?</summary><p>Un palo que gana sobre los demás.</p></details>
+      <details><summary>¿Qué es seguir el palo?</summary><p>Jugar la misma categoría de carta si tenés.</p></details>
+
+    </div>
+
+    <div data-en style="display:none">
+      <h2>How trick-taking works</h2>
+
+      <details><summary>What is a trick?</summary><p>Each player plays one card.</p></details>
+      <details><summary>Who wins?</summary><p>Highest card or trump.</p></details>
+      <details><summary>What is trump?</summary><p>A suit that beats others.</p></details>
+      <details><summary>Follow suit?</summary><p>Play same suit if possible.</p></details>
+
+    </div>
+
+  </div>
 
   <script>
-    (function () {
-      const root = document.documentElement;
-      const btnEs = document.getElementById('lang-es');
-      const btnEn = document.getElementById('lang-en');
-      const storageKey = 'anotador-bazas-support-lang';
-
-      function setLanguage(lang) {
-        root.lang = lang;
-        document.title = lang === 'es'
-          ? 'Anotador de Bazas – Soporte'
-          : 'Anotador de Bazas – Support';
-
-        btnEs.classList.toggle('active', lang === 'es');
-        btnEn.classList.toggle('active', lang === 'en');
-        btnEs.setAttribute('aria-pressed', String(lang === 'es'));
-        btnEn.setAttribute('aria-pressed', String(lang === 'en'));
-
-        try {
-          localStorage.setItem(storageKey, lang);
-        } catch (e) {}
-      }
-
-      let initialLang = 'es';
-
-      try {
-        const saved = localStorage.getItem(storageKey);
-        if (saved === 'es' || saved === 'en') {
-          initialLang = saved;
-        } else {
-          const browserLang = (navigator.language || '').toLowerCase();
-          initialLang = browserLang.startsWith('en') ? 'en' : 'es';
-        }
-      } catch (e) {
-        const browserLang = (navigator.language || '').toLowerCase();
-        initialLang = browserLang.startsWith('en') ? 'en' : 'es';
-      }
-
-      setLanguage(initialLang);
-
-      btnEs.addEventListener('click', function () {
-        setLanguage('es');
-      });
-
-      btnEn.addEventListener('click', function () {
-        setLanguage('en');
-      });
-
-      const year = new Date().getFullYear();
-      document.getElementById('year-es').textContent = year;
-      document.getElementById('year-en').textContent = year;
-    })();
+    function setLang(lang) {
+      document.querySelectorAll('[data-es]').forEach(e => e.style.display = lang==='es'?'block':'none');
+      document.querySelectorAll('[data-en]').forEach(e => e.style.display = lang==='en'?'block':'none');
+    }
   </script>
+
 </body>
 </html>
+
