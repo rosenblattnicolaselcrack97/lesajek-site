@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contacto – Lesajek</title>
+  <meta name="description" content="Eníanános tus ideas, reseñas o consultas a Lesajek. Completá el formulario para comunicarte directamente con nosotros." />
+  <meta name="theme-color" content="#080808" />
+  <link rel="icon" type="image/png" href="/contacto/favicon.png" />
+  <style>
+    :root {
+      --bg: #080808;
+      --bg-2: #12100b;
+      --panel: rgba(22, 22, 22, 0.78);
+      --line: rgba(220, 176, 74, 0.24);
+      --text: #f8f4ea;
+      --muted: #cfc5b3;
+      --gold: #d4af37;
+      --gold-2: #f5d36c;
+      --gold-3: #9b7626;
+      --shadow: 0 30px 90px rgba(0, 0, 0, 0.42);
+      --radius-xl: 32px;
+      --radius-lg: 24px;
+      --radius-md: 16px;
+      --max-width: 880px;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 18% 12%, rgba(212, 175, 55, 0.18), transparent 28%),
+        radial-gradient(circle at 88% 18%, rgba(245, 211, 108, 0.12), transparent 26%),
+        radial-gradient(circle at 50% 100%, rgba(212, 175, 55, 0.10), transparent 34%),
+        linear-gradient(180deg, var(--bg) 0%, var(--bg-2) 100%);
+      line-height: 1.5;
+      min-height: 100vh;
+    }
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.035) 1px, transparent 1px);
+      background-size: 56px 56px;
+      mask-image: linear-gradient(to bottom, rgba(0,0,0,0.55), transparent 70%);
+    }
+    a { color: inherit; text-decoration: none; }
+    .container {
+      width: min(100% - 32px, var(--max-width));
+      margin: 0 auto;
+      padding: 34px 0 64px;
+    }
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      padding-bottom: 24px;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .brand-mark { width: 40px; height: 40px; border-radius: 12px; background: #fff; object-fit: cover; box-shadow: 0 10px 24px rgba(0,0,0,0.34); }
+    .brand-text { display: flex; flex-direction: column; line-height: 1.05; }
+    .brand-name { font-size: 18px; font-weight: 900; letter-spacing: 0.12em; text-transform: uppercase; }
+    .brand-subtitle { margin-top: 4px; color: var(--gold-2); font-size: 11px; font-weight: 800; letter-spacing: 0.18em; text-transform: uppercase; }
+    .nav-links { display: flex; gap: 10px; }
+    .nav-link { color: var(--muted); font-size: 14px; font-weight: 800; padding: 8px 12px; border-radius: 999px; transition: all 0.2s ease; }
+    .nav-link:hover { color: var(--text); background: rgba(255, 255, 255, 0.06); }
+    h1 { margin: 0; font-size: clamp(32px, 5vw, 48px); letter-spacing: -0.045em; }
+    p.lead { margin: 14px 0 40px; color: var(--muted); font-size: 18px; max-width: 600px; }
+    form {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+      border-radius: var(--radius-lg);
+      padding: 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    label { font-weight: 700; font-size: 14px; margin-bottom: 4px; }
+    input[type="text"], input[type="email"], input[type="tel"], select, textarea {
+      width: 100%;
+      padding: 12px 14px;
+      border-radius: 8px;
+      border: 1px solid rgba(255,255,255,0.18);
+      background: rgba(0,0,0,0.25);
+      color: var(--text);
+      font-size: 15px;
+      resize: vertical;
+    }
+    input:focus, select:focus, textarea:focus { outline: none; border-color: rgba(245,211,108,0.55); background: rgba(255,255,255,0.08); }
+    textarea { min-height: 140px; }
+    .submit-btn {
+      align-self: flex-start;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 18px;
+      border-radius: 14px;
+      border: 1px solid transparent;
+      background: linear-gradient(135deg, var(--gold-2), var(--gold));
+      color: #16100a;
+      font-weight: 900;
+      cursor: pointer;
+      transition: transform 0.2s ease;
+    }
+    .submit-btn:hover { transform: translateY(-2px); }
+    .error { color: #ff9999; font-size: 14px; display: none; margin-top: -8px; }
+    .footer { margin-top: 50px; display: flex; justify-content: space-between; flex-wrap: wrap; color: var(--soft); font-size: 14px; gap: 16px; }
+    .footer-links { display: flex; gap: 12px; flex-wrap: wrap; }
+    .footer-links a { color: var(--muted); }
+    .footer-links a:hover { color: var(--gold-2); }
+    @media (max-width: 680px) {
+      .nav { flex-direction: column; align-items: flex-start; }
+      .nav-links { margin-top: 12px; }
+      form { padding: 24px; }
+      .submit-btn { width: 100%; justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Navigation -->
+    <nav class="nav">
+      <a class="brand" href="/" aria-label="Ir al inicio">
+        <img class="brand-mark" src="/LOGO%20LESAJEK.png" alt="Logo Lesajek" width="40" height="40" />
+        <span class="brand-text">
+          <span class="brand-name">Lesajek</span>
+          <span class="brand-subtitle">Game Apps</span>
+        </span>
+      </a>
+      <div class="nav-links">
+        <a class="nav-link" href="/">Inicio</a>
+        <a class="nav-link" href="/anotador_de_bazas/">Anotador</a>
+        <a class="nav-link" href="/juego_de_bazas/">Juego</a>
+      </div>
+    </nav>
+    <h1>Contacto</h1>
+    <p class="lead">Contanos qué tenés en mente. Elegí un motivo y completá los campos para enviarnos un mensaje.</p>
+    <!-- Contact form -->
+    <form id="contact-form">
+      <div>
+        <label for="nombre">Nombre *</label>
+        <input type="text" id="nombre" name="nombre" required />
+        <div class="error" id="error-nombre">Ingrese su nombre.</div>
+      </div>
+      <div>
+        <label for="email">Email *</label>
+        <input type="email" id="email" name="email" required />
+        <div class="error" id="error-email">Ingrese un email válido.</div>
+      </div>
+      <div>
+        <label for="telefono">Teléfono</label>
+        <input type="tel" id="telefono" name="telefono" />
+      </div>
+      <div>
+        <label for="motivo">Motivo *</label>
+        <select id="motivo" name="motivo" required>
+          <option value="" disabled selected>Seleccioná un motivo</option>
+          <option value="Idea de un nuevo juego">Idea de un nuevo juego</option>
+          <option value="Solicitud de trabajo">Solicitud de trabajo</option>
+          <option value="Reseña o mejora">Reseña o mejora</option>
+          <option value="Consulta general">Consulta general</option>
+        </select>
+        <div class="error" id="error-motivo">Seleccione un motivo.</div>
+      </div>
+      <div>
+        <label for="mensaje">Mensaje *</label>
+        <textarea id="mensaje" name="mensaje" required></textarea>
+        <div class="error" id="error-mensaje">Ingrese un mensaje.</div>
+      </div>
+      <button type="submit" class="submit-btn">Enviar mensaje</button>
+    </form>
+    <!-- Footer -->
+    <footer class="footer">
+      <div>© <span id="year"></span> Lesajek. Todos los derechos reservados.</div>
+      <div class="footer-links">
+        <a href="/">Inicio</a>
+        <a href="/anotador_de_bazas/">Anotador</a>
+        <a href="/juego_de_bazas/">Juego</a>
+      </div>
+    </footer>
+  </div>
+  <script>
+    // Actualiza año
+    document.getElementById('year').textContent = new Date().getFullYear();
+    // Form validation and mailto
+    document.getElementById('contact-form').addEventListener('submit', function (e) {
+      e.preventDefault();
+      // Reset errors
+      const fields = ['nombre', 'email', 'motivo', 'mensaje'];
+      let valid = true;
+      fields.forEach(function(id) {
+        const field = document.getElementById(id);
+        const error = document.getElementById('error-' + id);
+        if (field && !field.value.trim()) {
+          error.style.display = 'block';
+          valid = false;
+        } else {
+          if (error) error.style.display = 'none';
+        }
+      });
+      if (!valid) return;
+      const nombre = document.getElementById('nombre').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const telefono = document.getElementById('telefono').value.trim();
+      const motivo = document.getElementById('motivo').value;
+      const mensaje = document.getElementById('mensaje').value.trim();
+      const subject = encodeURIComponent('Contacto: ' + motivo);
+      let body = 'Nombre: ' + nombre + '\nEmail: ' + email;
+      if (telefono) body += '\nTeléfono: ' + telefono;
+      body += '\nMotivo: ' + motivo + '\n\nMensaje:\n' + mensaje;
+      const mailtoLink = 'mailto:info@lesajek.com?subject=' + subject + '&body=' + encodeURIComponent(body);
+      window.location.href = mailtoLink;
+    });
+  </script>
+</body>
+</html>
