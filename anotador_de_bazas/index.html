@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Anotador de Bazas – Lesajek</title>
+  <meta name="description" content="Lleva la cuenta de tus partidas de bazas de manera fácil y elegante con el Anotador de Bazas de Lesajek.">
+  <link rel="icon" type="image/png" href="assets/favicon.png">
+  <style>
+    :root {
+      --bg: #080808;
+      --bg2: #12100b;
+      --panel: rgba(22,22,22,0.8);
+      --panel-light: rgba(255,255,255,0.05);
+      --line: rgba(220,176,74,0.25);
+      --text: #f8f4ea;
+      --muted: #cfc5b3;
+      --accent: #d4af37;
+      --accent2: #f5d36c;
+      --accent3: #9b7626;
+      --radius-lg: 24px;
+      --radius-md: 16px;
+    }
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 20% 10%, rgba(212,175,55,0.18), transparent 28%),
+        radial-gradient(circle at 80% 20%, rgba(245,211,108,0.12), transparent 26%),
+        radial-gradient(circle at 50% 100%, rgba(212,175,55,0.10), transparent 34%),
+        linear-gradient(180deg, var(--bg) 0%, var(--bg2) 100%);
+      line-height: 1.6;
+    }
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .brand img {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+    }
+    .brand-name {
+      font-size: 18px;
+      font-weight: 900;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+    .nav-links a {
+      margin-left: 18px;
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 800;
+      padding: 8px 12px;
+      border-radius: 999px;
+      transition: background 0.2s ease, color 0.2s ease;
+    }
+    .nav-links a:hover {
+      color: var(--text);
+      background: var(--panel-light);
+    }
+    .hero {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 80px 20px 40px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero .app-icon {
+      width: 120px;
+      height: 120px;
+      margin-bottom: 24px;
+      border-radius: 24px;
+      box-shadow: 0 24px 50px rgba(0,0,0,0.45);
+    }
+    .hero h1 {
+      margin: 0;
+      font-size: 56px;
+      line-height: 1.05;
+      letter-spacing: -0.04em;
+    }
+    .hero p {
+      margin-top: 18px;
+      font-size: 20px;
+      max-width: 640px;
+      color: var(--muted);
+    }
+    .store-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 16px;
+      margin-top: 32px;
+    }
+    .store-buttons a {
+      display: inline-block;
+      transition: transform 0.2s ease;
+    }
+    .store-buttons a:hover {
+      transform: translateY(-4px);
+    }
+    .store-buttons img {
+      height: 60px;
+      object-fit: contain;
+    }
+    .store-buttons a.disabled img {
+      opacity: 0.5;
+    }
+    .features {
+      max-width: 1200px;
+      margin: 60px auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 20px;
+      padding: 0 20px;
+    }
+    .feature {
+      padding: 24px;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--line);
+      background: var(--panel);
+      box-shadow: 0 20px 50px rgba(0,0,0,0.35);
+      transition: transform 0.3s ease;
+    }
+    .feature:hover {
+      transform: translateY(-6px);
+    }
+    .feature-icon {
+      width: 50px;
+      height: 50px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, var(--accent2), var(--accent));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #16100a;
+      font-size: 24px;
+      font-weight: 900;
+      margin-bottom: 16px;
+    }
+    .feature h3 {
+      margin: 0 0 10px;
+      font-size: 22px;
+    }
+    .feature p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 16px;
+    }
+    .cta {
+      max-width: 1000px;
+      margin: 80px auto 40px;
+      padding: 40px;
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--line);
+      background: linear-gradient(135deg, rgba(212,175,55,0.16), rgba(255,255,255,0.05));
+      box-shadow: 0 20px 50px rgba(0,0,0,0.35);
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 24px;
+      position: relative;
+    }
+    .cta::before {
+      content: "♠";
+      position: absolute;
+      top: -40px;
+      right: 20px;
+      font-size: 180px;
+      line-height: 1;
+      color: rgba(212,175,55,0.08);
+      transform: rotate(14deg);
+    }
+    .cta-content {
+      flex: 1 1 400px;
+    }
+    .cta h2 {
+      margin: 0 0 12px;
+      font-size: 32px;
+    }
+    .cta p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 18px;
+    }
+    .cta-action {
+      flex: 0 0 auto;
+    }
+    .button-primary {
+      display: inline-block;
+      padding: 14px 20px;
+      border-radius: 15px;
+      font-weight: 900;
+      color: #16100a;
+      background: linear-gradient(135deg, var(--accent2), var(--accent));
+      box-shadow: 0 14px 40px rgba(212,175,55,0.26);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .button-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 18px 50px rgba(212,175,55,0.36);
+    }
+    .footer {
+      max-width: 1200px;
+      margin: 40px auto;
+      padding: 20px;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+    .footer-links a {
+      margin-left: 14px;
+      color: var(--muted);
+      transition: color 0.2s ease;
+    }
+    .footer-links a:hover {
+      color: var(--accent2);
+    }
+    @media (max-width: 720px) {
+      .hero h1 {
+        font-size: 40px;
+      }
+      .hero .app-icon {
+        width: 90px;
+        height: 90px;
+      }
+      .store-buttons img {
+        height: 50px;
+      }
+      .features {
+        grid-template-columns: 1fr;
+      }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      * {
+        transition-duration: 0.001ms !important;
+        animation-duration: 0.001ms !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="nav">
+    <a class="brand" href="/">
+      <img src="/LOGO%20LESAJEK.png" alt="Lesajek logo">
+      <span class="brand-name">Lesajek</span>
+    </a>
+    <nav class="nav-links">
+      <a href="/">Inicio</a>
+      <a href="/juego_de_bazas/">Juego de Bazas</a>
+      <a href="/contacto/">Contacto</a>
+    </nav>
+  </header>
+  <main>
+    <section class="hero">
+      <img class="app-icon" src="assets/icon.png" alt="Icono de Anotador de Bazas">
+      <h1>Anotador de Bazas</h1>
+      <p>Guarda y lleva el puntaje de tus partidas de bazas de forma rápida, clara y sin errores. Olvidate del papel: siempre tendrás el marcador a mano.</p>
+      <div class="store-buttons">
+        <a href="https://apps.apple.com/app/id6476737682" target="_blank" rel="noopener" class="appstore">
+          <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" alt="Descargar en App Store">
+        </a>
+        <a href="#" class="googleplay disabled">
+          <img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" alt="Disponible próximamente en Google Play">
+        </a>
+      </div>
+    </section>
+    <section class="features">
+      <article class="feature">
+        <div class="feature-icon">✍</div>
+        <h3>Anotación simple</h3>
+        <p>Anotá cada ronda al instante con interfaz intuitiva y evita errores de cálculo.</p>
+      </article>
+      <article class="feature">
+        <div class="feature-icon">📊</div>
+        <h3>Estadísticas</h3>
+        <p>Seguimiento del progreso de cada jugador y resumen de partidas anteriores.</p>
+      </article>
+      <article class="feature">
+        <div class="feature-icon">⚙</div>
+        <h3>Personalizable</h3>
+        <p>Configura el número de rondas y reglas según tu estilo de juego.</p>
+      </article>
+    </section>
+    <section class="cta">
+      <div class="cta-content">
+        <h2>¿Listo para anotar tus partidas?</h2>
+        <p>El Anotador de Bazas te acompaña en cada juego, haciéndolo más prolijo y divertido. Descargalo gratis y comenzá a jugar mejor.</p>
+      </div>
+      <div class="cta-action">
+        <a class="button-primary" href="https://apps.apple.com/app/id6476737682">Descargar App</a>
+      </div>
+    </section>
+  </main>
+  <footer class="footer">
+    <div>© <span id="year"></span> Lesajek. Todos los derechos reservados.</div>
+    <div class="footer-links">
+      <a href="/">Inicio</a>
+      <a href="/anotador_de_bazas/support/">Soporte</a>
+      <a href="/contacto/">Contacto</a>
+    </div>
+  </footer>
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
