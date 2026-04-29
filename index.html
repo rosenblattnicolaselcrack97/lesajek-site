@@ -1,0 +1,965 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Lesajek – Game Apps</title>
+  <meta
+    name="description"
+    content="Lesajek crea apps simples, modernas y fáciles de usar para juegos clásicos. Anotadores digitales, juegos de cartas y experiencias pensadas para jugar mejor."
+  />
+  <meta name="theme-color" content="#080808" />
+
+  <link rel="icon" type="image/png" href="/LOGO%20LESAJEK.png" />
+  <link rel="shortcut icon" type="image/png" href="/LOGO%20LESAJEK.png" />
+  <link rel="apple-touch-icon" href="/LOGO%20LESAJEK.png" />
+
+  <meta property="og:title" content="Lesajek – Game Apps" />
+  <meta
+    property="og:description"
+    content="Apps modernas para juegos clásicos. Anotadores digitales, juegos de cartas y herramientas simples para jugar mejor."
+  />
+  <meta property="og:image" content="https://lesajek.com/LOGO%20LESAJEK.png" />
+  <meta property="og:url" content="https://lesajek.com/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Lesajek" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Lesajek – Game Apps" />
+  <meta
+    name="twitter:description"
+    content="Apps modernas para juegos clásicos."
+  />
+  <meta name="twitter:image" content="https://lesajek.com/LOGO%20LESAJEK.png" />
+
+  <style>
+    :root {
+      --bg: #080808;
+      --bg-2: #12100b;
+      --panel: rgba(22, 22, 22, 0.78);
+      --panel-2: rgba(255, 255, 255, 0.06);
+      --line: rgba(220, 176, 74, 0.24);
+      --text: #f8f4ea;
+      --muted: #cfc5b3;
+      --soft: #8f8778;
+      --gold: #d4af37;
+      --gold-2: #f5d36c;
+      --gold-3: #9b7626;
+      --white: #ffffff;
+      --black: #050505;
+      --shadow: 0 30px 90px rgba(0, 0, 0, 0.42);
+      --radius-xl: 32px;
+      --radius-lg: 24px;
+      --radius-md: 16px;
+      --max-width: 1160px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background:
+        radial-gradient(circle at 18% 12%, rgba(212, 175, 55, 0.18), transparent 28%),
+        radial-gradient(circle at 88% 18%, rgba(245, 211, 108, 0.12), transparent 26%),
+        radial-gradient(circle at 50% 100%, rgba(212, 175, 55, 0.10), transparent 34%),
+        linear-gradient(180deg, var(--bg) 0%, var(--bg-2) 100%);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.035) 1px, transparent 1px);
+      background-size: 56px 56px;
+      mask-image: linear-gradient(to bottom, rgba(0,0,0,0.55), transparent 70%);
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    .page {
+      width: min(100% - 32px, var(--max-width));
+      margin: 0 auto;
+      padding: 26px 0 56px;
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      padding: 12px 0 26px;
+      position: relative;
+      z-index: 3;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 0;
+    }
+
+    .brand-mark {
+      width: 48px;
+      height: 48px;
+      border-radius: 15px;
+      object-fit: cover;
+      background: #fff;
+      box-shadow: 0 14px 34px rgba(0, 0, 0, 0.34);
+    }
+
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.05;
+    }
+
+    .brand-name {
+      font-size: 18px;
+      font-weight: 900;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .brand-subtitle {
+      margin-top: 4px;
+      color: var(--gold-2);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .nav-link {
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 800;
+      padding: 10px 12px;
+      border-radius: 999px;
+      transition: all 0.2s ease;
+    }
+
+    .nav-link:hover {
+      color: var(--text);
+      background: rgba(255, 255, 255, 0.06);
+    }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: var(--radius-xl);
+      background:
+        linear-gradient(135deg, rgba(255,255,255,0.10), rgba(255,255,255,0.03)),
+        rgba(10, 10, 10, 0.76);
+      box-shadow: var(--shadow);
+      padding: clamp(26px, 5vw, 58px);
+      min-height: 610px;
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 34px;
+      align-items: center;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      width: 560px;
+      height: 560px;
+      right: -210px;
+      top: -190px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(212, 175, 55, 0.22), transparent 68%);
+      pointer-events: none;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 1px;
+      border-radius: calc(var(--radius-xl) - 1px);
+      pointer-events: none;
+      background:
+        linear-gradient(120deg, rgba(255,255,255,0.08), transparent 34%),
+        linear-gradient(315deg, rgba(212,175,55,0.10), transparent 42%);
+      mask-image: linear-gradient(to bottom, rgba(0,0,0,0.9), transparent 92%);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+    }
+
+    .kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      padding: 8px 12px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: rgba(212, 175, 55, 0.08);
+      color: var(--gold-2);
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+
+    .kicker-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: var(--gold-2);
+      box-shadow: 0 0 18px rgba(245, 211, 108, 0.65);
+    }
+
+    h1 {
+      margin: 0;
+      max-width: 780px;
+      font-size: clamp(42px, 7vw, 82px);
+      line-height: 0.95;
+      letter-spacing: -0.065em;
+    }
+
+    .gold-text {
+      color: transparent;
+      background: linear-gradient(135deg, var(--gold-2), var(--gold), var(--gold-3));
+      -webkit-background-clip: text;
+      background-clip: text;
+    }
+
+    .lead {
+      margin: 22px 0 0;
+      max-width: 660px;
+      color: var(--muted);
+      font-size: clamp(17px, 2vw, 21px);
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 30px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      min-height: 52px;
+      padding: 14px 18px;
+      border-radius: 15px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      background: rgba(255, 255, 255, 0.06);
+      color: var(--text);
+      font-weight: 900;
+      transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+    }
+
+    .button:hover,
+    .button:focus-visible {
+      transform: translateY(-2px);
+      border-color: rgba(245, 211, 108, 0.55);
+      background: rgba(255, 255, 255, 0.09);
+      outline: none;
+    }
+
+    .button.primary {
+      color: #16100a;
+      border-color: transparent;
+      background: linear-gradient(135deg, var(--gold-2), var(--gold));
+      box-shadow: 0 18px 42px rgba(212, 175, 55, 0.22);
+    }
+
+    .button.disabled {
+      cursor: not-allowed;
+      opacity: 0.55;
+    }
+
+    .hero-visual {
+      position: relative;
+      z-index: 2;
+      min-height: 430px;
+      display: grid;
+      place-items: center;
+    }
+
+    .logo-stage {
+      position: relative;
+      width: min(100%, 430px);
+      aspect-ratio: 1;
+      display: grid;
+      place-items: center;
+    }
+
+    .logo-glow {
+      position: absolute;
+      inset: 8%;
+      border-radius: 50%;
+      background:
+        radial-gradient(circle, rgba(245, 211, 108, 0.20), transparent 62%),
+        radial-gradient(circle, rgba(255, 255, 255, 0.06), transparent 60%);
+      filter: blur(4px);
+      animation: breathe 4.5s ease-in-out infinite;
+    }
+
+    .logo-card {
+      position: relative;
+      width: 78%;
+      border-radius: 36px;
+      padding: 18px;
+      background: rgba(255, 255, 255, 0.94);
+      box-shadow:
+        0 34px 90px rgba(0, 0, 0, 0.44),
+        0 0 0 1px rgba(212, 175, 55, 0.26);
+      transform: rotate(-2deg);
+      animation: floatLogo 5.5s ease-in-out infinite;
+    }
+
+    .logo-card img {
+      border-radius: 26px;
+      width: 100%;
+      height: auto;
+    }
+
+    .floating-card {
+      position: absolute;
+      width: 74px;
+      height: 102px;
+      border-radius: 14px;
+      background:
+        linear-gradient(145deg, rgba(255,255,255,0.96), rgba(255,255,255,0.86));
+      box-shadow: 0 18px 48px rgba(0, 0, 0, 0.28);
+      border: 1px solid rgba(212, 175, 55, 0.28);
+      display: grid;
+      place-items: center;
+      color: #16100a;
+      font-size: 34px;
+      font-weight: 900;
+    }
+
+    .floating-card.one {
+      left: 0;
+      top: 12%;
+      transform: rotate(-14deg);
+      animation: floatCardOne 6s ease-in-out infinite;
+    }
+
+    .floating-card.two {
+      right: 2%;
+      bottom: 13%;
+      transform: rotate(13deg);
+      animation: floatCardTwo 6.8s ease-in-out infinite;
+    }
+
+    .floating-card.three {
+      right: 12%;
+      top: 3%;
+      width: 58px;
+      height: 80px;
+      font-size: 26px;
+      transform: rotate(9deg);
+      opacity: 0.86;
+      animation: floatCardThree 5.6s ease-in-out infinite;
+    }
+
+    .section {
+      padding: 76px 0 0;
+    }
+
+    .section-head {
+      max-width: 720px;
+      margin-bottom: 24px;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      margin-bottom: 10px;
+      color: var(--gold-2);
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    h2 {
+      margin: 0;
+      font-size: clamp(32px, 5vw, 52px);
+      line-height: 1;
+      letter-spacing: -0.045em;
+    }
+
+    .section-description {
+      margin: 14px 0 0;
+      color: var(--muted);
+      font-size: 18px;
+      max-width: 660px;
+    }
+
+    .apps-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+      margin-top: 28px;
+    }
+
+    .app-card {
+      position: relative;
+      overflow: hidden;
+      min-height: 330px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.035)),
+        var(--panel);
+      box-shadow: var(--shadow);
+      padding: 24px;
+    }
+
+    .app-card::before {
+      content: "";
+      position: absolute;
+      width: 230px;
+      height: 230px;
+      right: -90px;
+      top: -90px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(212, 175, 55, 0.18), transparent 68%);
+    }
+
+    .app-top {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 18px;
+    }
+
+    .app-icon {
+      width: 78px;
+      height: 78px;
+      border-radius: 22px;
+      object-fit: cover;
+      background: #fff;
+      box-shadow: 0 18px 42px rgba(0, 0, 0, 0.35);
+    }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 30px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: rgba(212, 175, 55, 0.10);
+      border: 1px solid rgba(212, 175, 55, 0.24);
+      color: var(--gold-2);
+      font-size: 12px;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      white-space: nowrap;
+    }
+
+    .app-card h3 {
+      position: relative;
+      z-index: 1;
+      margin: 24px 0 10px;
+      font-size: 30px;
+      line-height: 1.08;
+      letter-spacing: -0.03em;
+    }
+
+    .app-card p {
+      position: relative;
+      z-index: 1;
+      margin: 0;
+      color: var(--muted);
+      font-size: 16px;
+    }
+
+    .app-actions {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 22px;
+    }
+
+    .features {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+      margin-top: 28px;
+    }
+
+    .feature {
+      padding: 22px;
+      border-radius: var(--radius-md);
+      border: 1px solid rgba(255, 255, 255, 0.10);
+      background: rgba(255, 255, 255, 0.045);
+    }
+
+    .feature-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 13px;
+      display: grid;
+      place-items: center;
+      color: #16100a;
+      background: linear-gradient(135deg, var(--gold-2), var(--gold));
+      font-size: 21px;
+      font-weight: 900;
+      margin-bottom: 14px;
+    }
+
+    .feature h3 {
+      margin: 0 0 8px;
+      font-size: 19px;
+      letter-spacing: -0.02em;
+    }
+
+    .feature p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .cta {
+      position: relative;
+      overflow: hidden;
+      margin-top: 78px;
+      padding: clamp(26px, 5vw, 46px);
+      border-radius: var(--radius-xl);
+      border: 1px solid var(--line);
+      background:
+        linear-gradient(135deg, rgba(212,175,55,0.16), rgba(255,255,255,0.05)),
+        rgba(255, 255, 255, 0.045);
+      box-shadow: var(--shadow);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .cta::before {
+      content: "♠";
+      position: absolute;
+      right: 28px;
+      top: -46px;
+      font-size: 190px;
+      line-height: 1;
+      color: rgba(245, 211, 108, 0.08);
+      transform: rotate(12deg);
+    }
+
+    .cta-content {
+      position: relative;
+      z-index: 1;
+      max-width: 700px;
+    }
+
+    .cta h2 {
+      font-size: clamp(30px, 4vw, 46px);
+    }
+
+    .cta p {
+      margin: 12px 0 0;
+      color: var(--muted);
+      font-size: 18px;
+    }
+
+    .cta-action {
+      position: relative;
+      z-index: 1;
+      flex: 0 0 auto;
+    }
+
+    .footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      flex-wrap: wrap;
+      padding: 34px 0 0;
+      color: var(--soft);
+      font-size: 14px;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      color: var(--muted);
+    }
+
+    .footer-links a:hover {
+      color: var(--gold-2);
+    }
+
+    @keyframes breathe {
+      0%, 100% { transform: scale(0.98); opacity: 0.78; }
+      50% { transform: scale(1.06); opacity: 1; }
+    }
+
+    @keyframes floatLogo {
+      0%, 100% { transform: translateY(0) rotate(-2deg); }
+      50% { transform: translateY(-12px) rotate(1deg); }
+    }
+
+    @keyframes floatCardOne {
+      0%, 100% { transform: translateY(0) rotate(-14deg); }
+      50% { transform: translateY(-18px) rotate(-9deg); }
+    }
+
+    @keyframes floatCardTwo {
+      0%, 100% { transform: translateY(0) rotate(13deg); }
+      50% { transform: translateY(16px) rotate(8deg); }
+    }
+
+    @keyframes floatCardThree {
+      0%, 100% { transform: translateY(0) rotate(9deg); }
+      50% { transform: translateY(-14px) rotate(15deg); }
+    }
+
+    @media (max-width: 940px) {
+      .hero {
+        grid-template-columns: 1fr;
+        min-height: auto;
+      }
+
+      .hero-visual {
+        min-height: 360px;
+      }
+
+      .apps-grid,
+      .features {
+        grid-template-columns: 1fr;
+      }
+
+      .cta {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+    }
+
+    @media (max-width: 680px) {
+      .page {
+        width: min(100% - 22px, var(--max-width));
+        padding-top: 16px;
+      }
+
+      .nav {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .nav-links {
+        justify-content: flex-start;
+      }
+
+      .hero {
+        padding: 22px;
+        border-radius: 26px;
+      }
+
+      .hero-actions,
+      .app-actions {
+        flex-direction: column;
+      }
+
+      .button {
+        width: 100%;
+      }
+
+      .hero-visual {
+        min-height: 310px;
+      }
+
+      .floating-card {
+        width: 58px;
+        height: 82px;
+        font-size: 26px;
+      }
+
+      .logo-card {
+        border-radius: 28px;
+      }
+
+      .app-card {
+        padding: 20px;
+      }
+
+      .app-top {
+        flex-direction: column;
+      }
+
+      .footer {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.001ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: 0.001ms !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="page">
+    <nav class="nav" aria-label="Navegación principal">
+      <a class="brand" href="/" aria-label="Ir al inicio de Lesajek">
+        <img
+          class="brand-mark"
+          src="/LOGO%20LESAJEK.png"
+          alt="Logo de Lesajek"
+          width="48"
+          height="48"
+        />
+        <span class="brand-text">
+          <span class="brand-name">Lesajek</span>
+          <span class="brand-subtitle">Game Apps</span>
+        </span>
+      </a>
+
+      <div class="nav-links">
+        <a class="nav-link" href="#apps">Apps</a>
+        <a class="nav-link" href="#vision">Visión</a>
+        <a class="nav-link" href="mailto:info@lesajek.com">Contacto</a>
+      </div>
+    </nav>
+
+    <section class="hero">
+      <div class="hero-content">
+        <div class="kicker">
+          <span class="kicker-dot"></span>
+          Apps para juegos clásicos
+        </div>
+
+        <h1>
+          Creamos apps simples para
+          <span class="gold-text">jugar mejor.</span>
+        </h1>
+
+        <p class="lead">
+          Lesajek desarrolla aplicaciones modernas, claras y fáciles de usar para juegos de cartas y juegos clásicos:
+          desde anotadores digitales hasta experiencias completas para jugar desde el celular.
+        </p>
+
+        <div class="hero-actions">
+          <a class="button primary" href="#apps">
+            Ver nuestras apps
+            <span aria-hidden="true">→</span>
+          </a>
+
+          <a class="button" href="https://lesajek.com/anotador_de_bazas/support/">
+            Soporte Anotador de Bazas
+          </a>
+        </div>
+      </div>
+
+      <div class="hero-visual" aria-hidden="true">
+        <div class="logo-stage">
+          <div class="logo-glow"></div>
+
+          <div class="floating-card one">♠</div>
+          <div class="floating-card two">♥</div>
+          <div class="floating-card three">♦</div>
+
+          <div class="logo-card">
+            <img
+              src="/LOGO%20LESAJEK.png"
+              alt=""
+              width="500"
+              height="500"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="apps">
+      <div class="section-head">
+        <span class="eyebrow">Nuestras apps</span>
+        <h2>Un ecosistema para juegos clásicos.</h2>
+        <p class="section-description">
+          Empezamos por las bazas y vamos a seguir construyendo herramientas para jugar, anotar, competir y disfrutar partidas de forma más cómoda.
+        </p>
+      </div>
+
+      <div class="apps-grid">
+        <article class="app-card">
+          <div class="app-top">
+            <img
+              class="app-icon"
+              src="/anotador_de_bazas/assets/icon.png"
+              alt="Logo de Anotador de Bazas"
+              width="78"
+              height="78"
+            />
+            <span class="tag">Disponible</span>
+          </div>
+
+          <h3>Anotador de Bazas</h3>
+
+          <p>
+            Una app pensada para anotar partidas presenciales de bazas de manera rápida, clara y sin errores.
+            Ideal para dejar de depender del papel y seguir el puntaje con prolijidad.
+          </p>
+
+          <div class="app-actions">
+            <a class="button primary" href="https://lesajek.com/anotador_de_bazas/support/">
+              Abrir soporte
+              <span aria-hidden="true">→</span>
+            </a>
+
+            <a class="button" href="mailto:info@lesajek.com?subject=Consulta%20sobre%20Anotador%20de%20Bazas">
+              Contactar
+            </a>
+          </div>
+        </article>
+
+        <article class="app-card">
+          <div class="app-top">
+            <img
+              class="app-icon"
+              src="/LOGO%20LESAJEK.png"
+              alt="Logo de Lesajek"
+              width="78"
+              height="78"
+            />
+            <span class="tag">En desarrollo</span>
+          </div>
+
+          <h3>Juego de Bazas</h3>
+
+          <p>
+            Próximamente: una app para jugar bazas directamente desde el celular, con una experiencia visual simple,
+            partidas claras y foco en que el gameplay sea rápido y entendible.
+          </p>
+
+          <div class="app-actions">
+            <span class="button disabled" aria-disabled="true">
+              Próximamente
+            </span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="vision">
+      <div class="section-head">
+        <span class="eyebrow">Qué buscamos</span>
+        <h2>Apps prolijas, intuitivas y memorables.</h2>
+        <p class="section-description">
+          La idea de Lesajek es llevar juegos tradicionales a experiencias digitales simples, sin perder la esencia de jugar con amigos.
+        </p>
+      </div>
+
+      <div class="features">
+        <article class="feature">
+          <div class="feature-icon">♣</div>
+          <h3>Juegos clásicos</h3>
+          <p>
+            Nos enfocamos en juegos conocidos, fáciles de entender y con valor social: bazas, burako, rummy y más.
+          </p>
+        </article>
+
+        <article class="feature">
+          <div class="feature-icon">✦</div>
+          <h3>Diseño simple</h3>
+          <p>
+            Interfaces limpias, botones claros, lectura rápida y pantallas pensadas para que cualquiera pueda usar la app.
+          </p>
+        </article>
+
+        <article class="feature">
+          <div class="feature-icon">🏆</div>
+          <h3>Mejor experiencia</h3>
+          <p>
+            Herramientas para anotar más rápido, jugar más cómodo y disfrutar cada partida con menos fricción.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section class="cta">
+      <div class="cta-content">
+        <span class="eyebrow">Lesajek Game Apps</span>
+        <h2>Primero anotadores. Después juegos completos.</h2>
+        <p>
+          Estamos construyendo una familia de apps para que los juegos clásicos sean más accesibles, modernos y fáciles de disfrutar.
+        </p>
+      </div>
+
+      <div class="cta-action">
+        <a class="button primary" href="mailto:info@lesajek.com">
+          Escribir a Lesajek
+        </a>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div>
+        © <span id="year"></span> Lesajek. Todos los derechos reservados.
+      </div>
+
+      <div class="footer-links">
+        <a href="https://lesajek.com/anotador_de_bazas/support/">Soporte</a>
+        <a href="https://lesajek.com/anotador_de_bazas/policy/">Privacidad</a>
+        <a href="https://lesajek.com/anotador_de_bazas/terms/">Términos</a>
+        <a href="mailto:info@lesajek.com">Contacto</a>
+      </div>
+    </footer>
+  </main>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
